@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Learning Portal</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <style>
+    .course-card {
+      background-color: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .course-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    header {
+      background-color: #0d6efd;
+      color: white;
+      padding: 20px 0;
+    }
+
+    footer {
+      background-color: #212529;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand fw-bold" href="#">E-Learn</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Courses</a></li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Categories</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Web Development</a></li>
+                <li><a class="dropdown-item" href="#">Data Science</a></li>
+                <li><a class="dropdown-item" href="#">Cyber Security</a></li>
+              </ul>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="container my-5">
+    <h2 class="text-center mb-4">Featured Courses</h2>
+    <button id="toggleCourses" class="btn btn-primary mb-4">Show/Hide Courses</button>
+    <div id="courseSection" class="row g-4">
+      <article class="col-md-4">
+        <div class="course-card">
+          <h4>Web Development</h4>
+          <p>Learn HTML, CSS, and JavaScript to build modern websites.</p>
+        </div>
+      </article>
+      <article class="col-md-4">
+        <div class="course-card">
+          <h4>Data Science</h4>
+          <p>Master Python, ML, and data visualization tools.</p>
+        </div>
+      </article>
+      <article class="col-md-4">
+        <div class="course-card">
+          <h4>Cyber Security</h4>
+          <p>Understand network security and ethical hacking basics.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header bg-primary text-white">
+          <h5 class="modal-title" id="loginLabel">User Login</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="loginForm">
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" id="username">
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password">
+            </div>
+            <div id="errorMsg" class="text-danger mb-2"></div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 E-Learn Portal | Designed with using HTML5, CSS3, JS, jQuery & Bootstrap</p>
+    <p>T.kesavapandiyan 23BCS043</p>
+  </footer>
+
+  <script>
+    $(document).ready(function() {
+      $("#toggleCourses").click(function() {
+        $("#courseSection").slideToggle(700);
+      });
+    });
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      let username = document.getElementById("username").value.trim();
+      let password = document.getElementById("password").value.trim();
+      let errorMsg = document.getElementById("errorMsg");
+      if (username === "" || password === "") {
+        errorMsg.textContent = "Please fill in both fields!";
+      } else {
+        errorMsg.textContent = "";
+        alert("Login Successful! Welcome, " + username);
+        let modal = bootstrap.Modal.getInstance(document.getElementById("loginModal"));
+        modal.hide();
+      }
+    });
+  </script>
+
+</body>
+</html>
